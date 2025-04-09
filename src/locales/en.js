@@ -40,11 +40,18 @@ export default {
     stayDeleted: 'Stay deleted successfully!',
     dataReset: 'All data has been reset.',
     loadError: 'Error loading your data. Starting with empty state.',
-    saveError: 'Error saving your data. Changes may not persist.'
+    saveError: 'Error saving your data. Changes may not persist.',
+    dataExported: 'Data exported successfully!',
+    exportError: 'Error exporting your data.',
+    dataImported: 'Data imported successfully!',
+    importError: 'Error importing data. Please check the file format.'
   },
   actions: {
     resetData: 'Reset All Data',
-    resetConfirm: 'Are you sure you want to delete ALL your data? This cannot be undone!'
+    resetConfirm: 'Are you sure you want to delete ALL your data? This cannot be undone!',
+    exportData: 'Export Data',
+    importData: 'Import Data',
+    importConfirm: 'This will replace your existing data. Continue?'
   },
   footer: {
     description: 'Nomad183Tracker - For digital nomads tracking tax residency on the move',

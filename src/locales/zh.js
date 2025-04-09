@@ -40,11 +40,18 @@ export default {
     stayDeleted: '停留删除成功！',
     dataReset: '所有数据已重置。',
     loadError: '加载数据时出错。从空状态开始。',
-    saveError: '保存数据时出错。更改可能不会保存。'
+    saveError: '保存数据时出错。更改可能不会保存。',
+    dataExported: '数据导出成功！',
+    exportError: '导出数据时出错。',
+    dataImported: '数据导入成功！',
+    importError: '导入数据时出错。请检查文件格式。'
   },
   actions: {
     resetData: '重置所有数据',
-    resetConfirm: '您确定要删除所有数据吗？此操作无法撤消！'
+    resetConfirm: '您确定要删除所有数据吗？此操作无法撤消！',
+    exportData: '导出数据',
+    importData: '导入数据',
+    importConfirm: '这将替换您现有的数据。继续吗？'
   },
   footer: {
     description: '游牧183追踪器 - 为数字游民在移动中跟踪税务居住',

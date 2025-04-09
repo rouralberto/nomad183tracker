@@ -26,7 +26,8 @@ export default {
       alertMessage: null,
       alertType: 'success',
       showAlert: false,
-      storageKey: 'nomad183tracker-stays'
+      storageKey: 'nomad183tracker-stays',
+      importFileInput: null
     };
   },
   computed: {
@@ -48,6 +49,8 @@ export default {
   created() {
     // Load data from localStorage when component is created
     this.loadStays();
+    // Create a file input element for importing
+    this.createImportInput();
   },
   methods: {
     loadStays() {
@@ -123,6 +126,86 @@ export default {
     changeLanguage(lang) {
       this.locale = lang;
       localStorage.setItem('language', lang);
+    },
+    exportData() {
+      try {
+        // Create a JSON blob
+        const jsonData = JSON.stringify(this.stays, null, 2);
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        
+        // Create a download link
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `nomad183tracker-export-${new Date().toISOString().split('T')[0]}.json`;
+        
+        // Trigger download
+        document.body.appendChild(a);
+        a.click();
+        
+        // Clean up
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        
+        this.showAlertMessage(this.$t('alerts.dataExported'), 'success');
+      } catch (error) {
+        console.error('Error exporting data:', error);
+        this.showAlertMessage(this.$t('alerts.exportError'), 'danger');
+      }
+    },
+    createImportInput() {
+      // Create a file input for importing
+      this.importFileInput = document.createElement('input');
+      this.importFileInput.type = 'file';
+      this.importFileInput.accept = 'application/json';
+      this.importFileInput.style.display = 'none';
+      
+      // Add change event listener
+      this.importFileInput.addEventListener('change', this.handleImportFile);
+      document.body.appendChild(this.importFileInput);
+    },
+    triggerImport() {
+      // Trigger the file input click
+      if (this.importFileInput) {
+        this.importFileInput.click();
+      }
+    },
+    handleImportFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          
+          // Validate the imported data
+          if (!Array.isArray(importedData)) {
+            throw new Error('Invalid data format');
+          }
+          
+          // Ask for confirmation if there's existing data
+          if (this.stays.length > 0) {
+            if (confirm(this.$t('actions.importConfirm'))) {
+              this.stays = importedData;
+              this.saveStays();
+              this.showAlertMessage(this.$t('alerts.dataImported'), 'success');
+            }
+          } else {
+            // No existing data, just import
+            this.stays = importedData;
+            this.saveStays();
+            this.showAlertMessage(this.$t('alerts.dataImported'), 'success');
+          }
+        } catch (error) {
+          console.error('Error importing data:', error);
+          this.showAlertMessage(this.$t('alerts.importError'), 'danger');
+        }
+        
+        // Reset the file input
+        event.target.value = '';
+      };
+      reader.readAsText(file);
     }
   }
 }
@@ -176,11 +259,19 @@ export default {
       />
     </div>
     
-    <!-- Reset Button -->
+    <!-- Action Buttons -->
     <div class="section text-center">
-      <button @click="resetAllData" class="btn btn-outline-danger">
-        <i class="bi bi-trash me-1"></i> {{ $t('actions.resetData') }}
-      </button>
+      <div class="btn-group">
+        <button @click="exportData" class="btn btn-outline-primary">
+          <i class="bi bi-download me-1"></i> {{ $t('actions.exportData') }}
+        </button>
+        <button @click="triggerImport" class="btn btn-outline-success">
+          <i class="bi bi-upload me-1"></i> {{ $t('actions.importData') }}
+        </button>
+        <button @click="resetAllData" class="btn btn-outline-danger">
+          <i class="bi bi-trash me-1"></i> {{ $t('actions.resetData') }}
+        </button>
+      </div>
     </div>
     
     <footer class="section text-center text-muted small mb-0">

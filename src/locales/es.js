@@ -40,11 +40,18 @@ export default {
     stayDeleted: '¡Estancia eliminada con éxito!',
     dataReset: 'Todos los datos han sido reiniciados.',
     loadError: 'Error al cargar tus datos. Comenzando con estado vacío.',
-    saveError: 'Error al guardar tus datos. Los cambios podrían no persistir.'
+    saveError: 'Error al guardar tus datos. Los cambios podrían no persistir.',
+    dataExported: '¡Datos exportados con éxito!',
+    exportError: 'Error al exportar tus datos.',
+    dataImported: '¡Datos importados con éxito!',
+    importError: 'Error al importar datos. Por favor, verifica el formato del archivo.'
   },
   actions: {
     resetData: 'Reiniciar Todos los Datos',
-    resetConfirm: '¿Estás seguro de que quieres eliminar TODOS tus datos? ¡Esta acción no se puede deshacer!'
+    resetConfirm: '¿Estás seguro de que quieres eliminar TODOS tus datos? ¡Esta acción no se puede deshacer!',
+    exportData: 'Exportar Datos',
+    importData: 'Importar Datos',
+    importConfirm: 'Esto reemplazará tus datos existentes. ¿Continuar?'
   },
   footer: {
     description: 'Nomad183Tracker - Para nómadas digitales que rastrean la residencia fiscal en movimiento',
