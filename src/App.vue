@@ -170,8 +170,17 @@ export default {
     </div>
     
     <footer class="section text-center text-muted small mb-0">
-      <p class="mb-1">Nomad183Tracker - For freelancers tracking tax residency on the move</p>
+      <p class="mb-1">Nomad183Tracker - For digital nomads tracking tax residency on the move</p>
       <p class="mb-0">Data stored locally in your browser - Your privacy protected</p>
+      <p class="mb-0 mt-2">
+        <a href="https://github.com/rouralberto/nomad183tracker" target="_blank" class="text-decoration-none">
+          <i class="bi bi-github me-1"></i>Contribute on GitHub
+        </a>
+      </p>
+      <p class="mb-0 mt-2">
+        Made with <i class="bi bi-heart-fill text-danger"></i> by 
+        <a href="https://albertoroura.com" target="_blank" class="text-decoration-none">Alberto Roura</a>
+      </p>
     </footer>
   </div>
 </template>
