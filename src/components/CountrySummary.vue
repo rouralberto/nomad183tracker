@@ -5,7 +5,7 @@
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" v-model="showRollingYear" id="rollingYearSwitch">
         <label class="ms-2 form-check-label" for="rollingYearSwitch">
-          Rolling 365 days
+          {{ $t('summary.rollingYear') }}
         </label>
       </div>
     </div>
@@ -33,14 +33,14 @@
               </td>
               <td>
                 <span v-if="summary.totalDays >= 183" class="badge bg-danger-subtle text-danger">
-                  <i class="bi bi-exclamation-triangle-fill me-1"></i> Tax Resident
+                  <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ $t('summary.taxResident') }}
                 </span>
                 <span v-else-if="summary.totalDays >= 150" class="badge bg-warning-subtle text-warning">
                   <i class="bi bi-exclamation-circle me-1"></i> 
                   {{ $t('summary.thresholdWarning', { days: summary.totalDays, country: summary.country }) }}
                 </span>
                 <span v-else class="badge bg-success-subtle text-success">
-                  <i class="bi bi-check-circle me-1"></i> Safe
+                  <i class="bi bi-check-circle me-1"></i> {{ $t('summary.safe') }}
                 </span>
               </td>
             </tr>
@@ -51,10 +51,10 @@
     <div class="card-footer small text-muted d-flex justify-content-between align-items-center">
       <div>
         <i class="bi bi-info-circle me-1"></i> 
-        {{ showRollingYear ? 'Showing days in the last 365 days only' : 'Showing all-time totals' }}
+        {{ showRollingYear ? $t('summary.showingRollingYear') : $t('summary.showingAllTime') }}
       </div>
       <span class="badge text-body" :class="showRollingYear ? 'bg-info-subtle' : 'bg-secondary-subtle'">
-        {{ showRollingYear ? 'Rolling Year' : 'All Time' }}
+        {{ showRollingYear ? $t('summary.rollingYearLabel') : $t('summary.allTimeLabel') }}
       </span>
     </div>
   </div>

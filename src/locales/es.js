@@ -27,7 +27,9 @@ export default {
     actions: 'Acciones',
     edit: 'Editar',
     delete: 'Eliminar',
-    present: 'Presente'
+    present: 'Presente',
+    entries: '{count} entradas',
+    confirmDelete: '¿Estás seguro de que quieres eliminar esta estancia?'
   },
   summary: {
     title: 'Resumen por País',
@@ -35,7 +37,14 @@ export default {
     totalDays: 'Días Totales',
     noData: 'No hay datos disponibles. Añade tus estancias para ver resúmenes por país.',
     threshold: 'Umbral de Residencia Fiscal',
-    thresholdWarning: '{days} días en {country} (umbral: 183 días)'
+    thresholdWarning: '{days} días en {country} (umbral: 183 días)',
+    rollingYear: 'Últimos 365 días',
+    showingRollingYear: 'Mostrando solo días en los últimos 365 días',
+    showingAllTime: 'Mostrando totales de todo el tiempo',
+    rollingYearLabel: 'Año Móvil',
+    allTimeLabel: 'Todo Tiempo',
+    taxResident: 'Residente Fiscal',
+    safe: 'Seguro'
   },
   alerts: {
     stayAdded: '¡Nueva estancia añadida con éxito!',
@@ -70,6 +79,9 @@ export default {
   language: {
     english: 'English',
     chinese: '中文',
-    spanish: 'Español'
+    spanish: 'Español',
+    german: 'Deutsch',
+    french: 'Français',
+    thai: 'ไทย'
   }
 } 

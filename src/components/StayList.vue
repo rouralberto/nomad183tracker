@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">{{ $t('list.title') }}</h5>
-      <span class="badge bg-success-subtle text-body">{{ stays.length }} entries</span>
+      <span class="badge bg-success-subtle text-body">{{ $t('list.entries', { count: stays.length }) }}</span>
     </div>
     <div class="card-body p-0">
       <div v-if="stays.length === 0" class="p-4 text-center text-muted">
@@ -97,7 +97,7 @@ export default {
       }
     },
     confirmDelete(stayId) {
-      if (confirm('Are you sure you want to delete this stay?')) {
+      if (confirm(this.$t('list.confirmDelete'))) {
         this.$emit('delete-stay', stayId);
       }
     },

@@ -18,13 +18,13 @@ const initTheme = () => {
 // Initialize language from localStorage or browser
 const initLang = () => {
   const savedLang = localStorage.getItem('language');
-  if (savedLang && ['en', 'zh', 'es'].includes(savedLang)) {
+  if (savedLang && ['en', 'zh', 'es', 'de', 'fr', 'th'].includes(savedLang)) {
     return savedLang;
   }
   
   // Try to get browser language
   const browserLang = navigator.language.split('-')[0];
-  if (['en', 'zh', 'es'].includes(browserLang)) {
+  if (['en', 'zh', 'es', 'de', 'fr', 'th'].includes(browserLang)) {
     return browserLang;
   }
   

@@ -27,7 +27,9 @@ export default {
     actions: '操作',
     edit: '编辑',
     delete: '删除',
-    present: '当前'
+    present: '当前',
+    entries: '{count} 条记录',
+    confirmDelete: '您确定要删除此停留吗？'
   },
   summary: {
     title: '国家摘要',
@@ -35,7 +37,14 @@ export default {
     totalDays: '总天数',
     noData: '没有可用数据。添加您的停留以查看国家摘要。',
     threshold: '税务居住门槛',
-    thresholdWarning: '在{country}停留{days}天（门槛: 183天）'
+    thresholdWarning: '在{country}停留{days}天（门槛: 183天）',
+    rollingYear: '最近365天',
+    showingRollingYear: '仅显示最近365天内的天数',
+    showingAllTime: '显示所有时间总计',
+    rollingYearLabel: '滚动年',
+    allTimeLabel: '所有时间',
+    taxResident: '税务居民',
+    safe: '安全'
   },
   alerts: {
     stayAdded: '新停留添加成功！',
@@ -70,6 +79,9 @@ export default {
   language: {
     english: 'English',
     chinese: '中文',
-    spanish: 'Español'
+    spanish: 'Español',
+    german: 'Deutsch',
+    french: 'Français',
+    thai: 'ไทย'
   }
 } 

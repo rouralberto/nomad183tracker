@@ -27,7 +27,9 @@ export default {
     actions: 'Actions',
     edit: 'Edit',
     delete: 'Delete',
-    present: 'Present'
+    present: 'Present',
+    entries: '{count} entries',
+    confirmDelete: 'Are you sure you want to delete this stay?'
   },
   summary: {
     title: 'Country Summary',
@@ -35,7 +37,14 @@ export default {
     totalDays: 'Total Days',
     noData: 'No data available. Add your stays to see country summaries.',
     threshold: 'Tax Residency Threshold',
-    thresholdWarning: '{days} days in {country} (threshold: 183 days)'
+    thresholdWarning: '{days} days in {country} (threshold: 183 days)',
+    rollingYear: 'Rolling 365 days',
+    showingRollingYear: 'Showing days in the last 365 days only',
+    showingAllTime: 'Showing all-time totals',
+    rollingYearLabel: 'Rolling Year',
+    allTimeLabel: 'All Time',
+    taxResident: 'Tax Resident',
+    safe: 'Safe'
   },
   alerts: {
     stayAdded: 'New stay added successfully!',
@@ -70,6 +79,9 @@ export default {
   language: {
     english: 'English',
     chinese: '中文',
-    spanish: 'Español'
+    spanish: 'Español',
+    german: 'Deutsch',
+    french: 'Français',
+    thai: 'ไทย'
   }
 } 
