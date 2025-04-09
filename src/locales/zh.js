@@ -13,7 +13,9 @@ export default {
     notesPlaceholder: '关于您停留的任何其他详情',
     add: '添加停留',
     update: '更新停留',
-    cancel: '取消'
+    cancel: '取消',
+    currentlyHere: '我目前在这个国家',
+    presentStay: '当前所在'
   },
   list: {
     title: '您的停留',
@@ -24,7 +26,8 @@ export default {
     notes: '备注',
     actions: '操作',
     edit: '编辑',
-    delete: '删除'
+    delete: '删除',
+    present: '当前'
   },
   summary: {
     title: '国家摘要',

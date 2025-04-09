@@ -22,16 +22,33 @@
           </thead>
           <tbody>
             <tr v-for="stay in stays" :key="stay.id" class="day-tracker"
-                :class="{'recent-stay': isWithinRollingYear(stay)}">
+                :class="{'recent-stay': isWithinRollingYear(stay), 'present-stay': isPresentStay(stay)}">
               <td>
                 {{ stay.country }}
                 <span v-if="isWithinRollingYear(stay)" class="badge rounded-pill bg-info-subtle text-body ms-1" title="Within rolling 365 days">
                   <i class="bi bi-calendar-check"></i>
                 </span>
+                <span v-if="isPresentStay(stay)" class="badge rounded-pill bg-success text-white ms-1" title="Currently in this country">
+                  <i class="bi bi-geo-fill"></i> {{ $t('list.present') }}
+                </span>
               </td>
               <td>{{ formatDate(stay.startDate) }}</td>
-              <td>{{ formatDate(stay.endDate) }}</td>
-              <td>{{ stay.days }}</td>
+              <td>
+                <template v-if="isPresentStay(stay)">
+                  <span class="text-success">{{ formatDate(getToday()) }}</span>
+                </template>
+                <template v-else>
+                  {{ formatDate(stay.endDate) }}
+                </template>
+              </td>
+              <td>
+                <template v-if="isPresentStay(stay)">
+                  {{ calculateCurrentDays(stay) }}
+                </template>
+                <template v-else>
+                  {{ stay.days }}
+                </template>
+              </td>
               <td>
                 <div class="btn-group btn-group-sm">
                   <button @click="editStay(stay)" class="btn btn-outline-primary" :title="$t('list.edit')">
@@ -66,7 +83,13 @@ export default {
       return new Date(dateString).toLocaleDateString(locale, options);
     },
     editStay(stay) {
-      this.$emit('edit-stay', { ...stay });
+      // If it's a present stay, use today's date for endDate when editing
+      if (stay.isPresent) {
+        const todayString = this.getToday();
+        this.$emit('edit-stay', { ...stay, endDate: todayString });
+      } else {
+        this.$emit('edit-stay', { ...stay });
+      }
     },
     confirmDelete(stayId) {
       if (confirm('Are you sure you want to delete this stay?')) {
@@ -78,8 +101,24 @@ export default {
       const oneYearAgo = new Date(today);
       oneYearAgo.setDate(today.getDate() - 365);
       
+      // For present stays, they are always within rolling year
+      if (stay.isPresent) return true;
+      
       const endDate = new Date(stay.endDate);
       return endDate >= oneYearAgo;
+    },
+    isPresentStay(stay) {
+      return stay.isPresent === true;
+    },
+    getToday() {
+      return new Date().toISOString().split('T')[0];
+    },
+    calculateCurrentDays(stay) {
+      const start = new Date(stay.startDate);
+      const today = new Date();
+      const diffTime = Math.abs(today - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Include both start and end day
+      return diffDays;
     }
   }
 }
@@ -89,5 +128,10 @@ export default {
 .recent-stay {
   background-color: var(--bg-subtle);
   border-left: 3px solid var(--bs-info);
+}
+
+.present-stay {
+  background-color: rgba(25, 135, 84, 0.05);
+  border-left: 3px solid var(--bs-success);
 }
 </style> 

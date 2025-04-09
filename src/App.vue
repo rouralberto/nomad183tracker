@@ -51,6 +51,8 @@ export default {
     this.loadStays();
     // Create a file input element for importing
     this.createImportInput();
+    // Update present stays
+    this.updatePresentStays();
   },
   methods: {
     loadStays() {
@@ -70,6 +72,35 @@ export default {
       } catch (error) {
         console.error('Error saving stays to localStorage:', error);
         this.showAlertMessage(this.$t('alerts.saveError'), 'danger');
+      }
+    },
+    updatePresentStays() {
+      let updatedStays = false;
+      const today = new Date();
+      const todayString = today.toISOString().split('T')[0];
+      
+      // Update days count for any "present" stays
+      this.stays.forEach(stay => {
+        if (stay.isPresent) {
+          // Update end date to today
+          stay.endDate = todayString;
+          
+          // Recalculate days
+          const start = new Date(stay.startDate);
+          const diffTime = Math.abs(today - start);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+          
+          // Only mark as updated if days have changed
+          if (stay.days !== diffDays) {
+            stay.days = diffDays;
+            updatedStays = true;
+          }
+        }
+      });
+      
+      // Save if any stays were updated
+      if (updatedStays) {
+        this.saveStays();
       }
     },
     addStay(newStay) {

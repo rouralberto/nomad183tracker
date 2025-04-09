@@ -13,7 +13,9 @@ export default {
     notesPlaceholder: 'Cualquier detalle adicional sobre tu estancia',
     add: 'Añadir Estancia',
     update: 'Actualizar Estancia',
-    cancel: 'Cancelar'
+    cancel: 'Cancelar',
+    currentlyHere: 'Actualmente estoy en este país',
+    presentStay: 'Estoy aquí ahora'
   },
   list: {
     title: 'Tus Estancias',
@@ -24,7 +26,8 @@ export default {
     notes: 'Notas',
     actions: 'Acciones',
     edit: 'Editar',
-    delete: 'Eliminar'
+    delete: 'Eliminar',
+    present: 'Presente'
   },
   summary: {
     title: 'Resumen por País',

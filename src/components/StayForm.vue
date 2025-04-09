@@ -34,21 +34,38 @@
               class="form-control"
               id="startDate"
               required
-              :max="stay.endDate || maxDate"
+              :max="isPresentStay ? maxDate : (stay.endDate || maxDate)"
             />
           </div>
           <div class="col-md-6 mb-3">
             <label for="endDate" class="form-label">{{ $t('form.checkOut') }}</label>
-            <input
-              type="date"
-              v-model="stay.endDate"
-              class="form-control"
-              id="endDate"
-              required
-              :min="stay.startDate"
-              :max="maxDate"
-            />
+            <div v-if="!isPresentStay">
+              <input
+                type="date"
+                v-model="stay.endDate"
+                class="form-control"
+                id="endDate"
+                required
+                :min="stay.startDate"
+                :max="maxDate"
+              />
+            </div>
+            <div v-else class="form-control-plaintext text-success">
+              <i class="bi bi-geo-fill"></i> {{ $t('form.presentStay') }}
+            </div>
           </div>
+        </div>
+
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="isPresentStay"
+            v-model="isPresentStay"
+          />
+          <label class="form-check-label" for="isPresentStay">
+            {{ $t('form.currentlyHere') }}
+          </label>
         </div>
         
         <div v-if="formError" class="alert alert-danger-subtle text-danger mt-3">
@@ -93,6 +110,7 @@ export default {
       },
       otherCountry: '',
       formError: '',
+      isPresentStay: false,
       countries: [
         // Popular in Europe
         'Portugal',
@@ -161,6 +179,8 @@ export default {
         if (newVal) {
           // We're in edit mode, populate form with stay data
           this.stay = { ...newVal };
+          // Check if this is a present stay (has isPresent flag)
+          this.isPresentStay = !!newVal.isPresent;
           // If it's a custom country not in our dropdown
           if (!this.countries.includes(newVal.country)) {
             this.otherCountry = newVal.country;
@@ -171,6 +191,13 @@ export default {
           this.resetForm();
         }
       }
+    },
+    // Reset end date when present stay is checked
+    isPresentStay(newVal) {
+      if (newVal) {
+        // If checked, we don't need an end date
+        this.stay.endDate = '';
+      }
     }
   },
   methods: {
@@ -179,9 +206,13 @@ export default {
         // Clear previous errors
         this.formError = '';
         
+        // Get today's date for present stays
+        const today = new Date();
+        const todayString = today.toISOString().split('T')[0];
+        
         // Validate dates
         const start = new Date(this.stay.startDate);
-        const end = new Date(this.stay.endDate);
+        const end = this.isPresentStay ? today : new Date(this.stay.endDate);
         
         if (end < start) {
           this.formError = 'End date cannot be before start date';
@@ -193,8 +224,9 @@ export default {
           id: this.editingStay ? this.editingStay.id : Date.now(), // Use timestamp as unique ID for new stays
           country: this.stay.country === 'other' ? this.otherCountry : this.stay.country,
           startDate: this.stay.startDate,
-          endDate: this.stay.endDate,
-          days: this.calculateDays(this.stay.startDate, this.stay.endDate)
+          endDate: this.isPresentStay ? todayString : this.stay.endDate,
+          days: this.calculateDays(this.stay.startDate, this.isPresentStay ? todayString : this.stay.endDate),
+          isPresent: this.isPresentStay // Add flag for present stays
         };
         
         // Emit the new stay to parent component
@@ -228,6 +260,7 @@ export default {
       };
       this.otherCountry = '';
       this.formError = '';
+      this.isPresentStay = false;
     }
   }
 }

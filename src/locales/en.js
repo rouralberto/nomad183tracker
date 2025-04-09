@@ -13,7 +13,9 @@ export default {
     notesPlaceholder: 'Any additional details about your stay',
     add: 'Add Stay',
     update: 'Update Stay',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    currentlyHere: 'I\'m currently in this country',
+    presentStay: 'Currently here'
   },
   list: {
     title: 'Your Stays',
@@ -24,7 +26,8 @@ export default {
     notes: 'Notes',
     actions: 'Actions',
     edit: 'Edit',
-    delete: 'Delete'
+    delete: 'Delete',
+    present: 'Present'
   },
   summary: {
     title: 'Country Summary',
