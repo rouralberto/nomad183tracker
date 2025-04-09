@@ -3,6 +3,8 @@ import StayForm from './components/StayForm.vue';
 import StayList from './components/StayList.vue';
 import CountrySummary from './components/CountrySummary.vue';
 import ThemeToggle from './components/ThemeToggle.vue';
+import LanguageSwitcher from './components/LanguageSwitcher.vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   name: 'App',
@@ -10,7 +12,12 @@ export default {
     StayForm,
     StayList,
     CountrySummary,
-    ThemeToggle
+    ThemeToggle,
+    LanguageSwitcher
+  },
+  setup() {
+    const { locale } = useI18n();
+    return { locale };
   },
   data() {
     return {
@@ -51,7 +58,7 @@ export default {
         }
       } catch (error) {
         console.error('Error loading stays from localStorage:', error);
-        this.showAlertMessage('Error loading your data. Starting with empty state.', 'danger');
+        this.showAlertMessage(this.$t('alerts.loadError'), 'danger');
       }
     },
     saveStays() {
@@ -59,7 +66,7 @@ export default {
         localStorage.setItem(this.storageKey, JSON.stringify(this.stays));
       } catch (error) {
         console.error('Error saving stays to localStorage:', error);
-        this.showAlertMessage('Error saving your data. Changes may not persist.', 'danger');
+        this.showAlertMessage(this.$t('alerts.saveError'), 'danger');
       }
     },
     addStay(newStay) {
@@ -68,13 +75,13 @@ export default {
         const index = this.stays.findIndex(s => s.id === this.editingStay.id);
         if (index !== -1) {
           this.stays.splice(index, 1, { ...newStay, id: this.editingStay.id });
-          this.showAlertMessage('Stay updated successfully!', 'success');
+          this.showAlertMessage(this.$t('alerts.stayUpdated'), 'success');
         }
         this.editingStay = null;
       } else {
         // Add new stay
         this.stays.push(newStay);
-        this.showAlertMessage('New stay added successfully!', 'success');
+        this.showAlertMessage(this.$t('alerts.stayAdded'), 'success');
       }
       this.saveStays();
     },
@@ -90,17 +97,17 @@ export default {
       if (index !== -1) {
         this.stays.splice(index, 1);
         this.saveStays();
-        this.showAlertMessage('Stay deleted successfully!', 'success');
+        this.showAlertMessage(this.$t('alerts.stayDeleted'), 'success');
       }
     },
     cancelEdit() {
       this.editingStay = null;
     },
     resetAllData() {
-      if (confirm('Are you sure you want to delete ALL your data? This cannot be undone!')) {
+      if (confirm(this.$t('actions.resetConfirm'))) {
         this.stays = [];
         localStorage.removeItem(this.storageKey);
-        this.showAlertMessage('All data has been reset.', 'warning');
+        this.showAlertMessage(this.$t('alerts.dataReset'), 'warning');
       }
     },
     showAlertMessage(message, type = 'success') {
@@ -112,6 +119,10 @@ export default {
       setTimeout(() => {
         this.showAlert = false;
       }, 3000);
+    },
+    changeLanguage(lang) {
+      this.locale = lang;
+      localStorage.setItem('language', lang);
     }
   }
 }
@@ -120,13 +131,16 @@ export default {
 <template>
   <div class="container">
     <header class="section text-center position-relative">
-      <div class="position-absolute top-0 end-0 mt-2">
+      <div class="position-absolute top-0 end-0 mt-2 d-flex">
+        <div class="me-2">
+          <LanguageSwitcher :value="locale" @change-language="changeLanguage" />
+        </div>
         <ThemeToggle />
       </div>
       <h1 class="display-5 mb-3">
-        <i class="bi bi-geo-alt"></i> Nomad183Tracker
+        <i class="bi bi-geo-alt"></i> {{ $t('appName') }}
       </h1>
-      <p class="lead mb-0">Track your international stays and monitor tax residency thresholds</p>
+      <p class="lead mb-0">{{ $t('appTagline') }}</p>
     </header>
     
     <!-- Alert for notifications -->
@@ -165,20 +179,20 @@ export default {
     <!-- Reset Button -->
     <div class="section text-center">
       <button @click="resetAllData" class="btn btn-outline-danger">
-        <i class="bi bi-trash me-1"></i> Reset All Data
+        <i class="bi bi-trash me-1"></i> {{ $t('actions.resetData') }}
       </button>
     </div>
     
     <footer class="section text-center text-muted small mb-0">
-      <p class="mb-1">Nomad183Tracker - For digital nomads tracking tax residency on the move</p>
-      <p class="mb-0">Data stored locally in your browser - Your privacy protected</p>
+      <p class="mb-1">{{ $t('footer.description') }}</p>
+      <p class="mb-0">{{ $t('footer.privacy') }}</p>
       <p class="mb-0 mt-2">
         <a href="https://github.com/rouralberto/nomad183tracker" target="_blank" class="text-decoration-none">
-          <i class="bi bi-github me-1"></i>Contribute on GitHub
+          <i class="bi bi-github me-1"></i>{{ $t('footer.contribute') }}
         </a>
       </p>
       <p class="mb-0 mt-2">
-        Made with <i class="bi bi-heart-fill text-danger"></i> by 
+        {{ $t('footer.madeWith') }} <i class="bi bi-heart-fill text-danger"></i> {{ $t('footer.by') }} 
         <a href="https://albertoroura.com" target="_blank" class="text-decoration-none">Alberto Roura</a>
       </p>
     </footer>

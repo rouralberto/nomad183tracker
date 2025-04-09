@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <h5 class="mb-0">Tax Residency Summary</h5>
+      <h5 class="mb-0">{{ $t('summary.title') }}</h5>
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" v-model="showRollingYear" id="rollingYearSwitch">
         <label class="ms-2 form-check-label" for="rollingYearSwitch">
@@ -12,15 +12,15 @@
     <div class="card-body p-0">
       <div v-if="currentSummary.length === 0" class="p-4 text-center text-muted">
         <i class="bi bi-globe display-1"></i>
-        <p class="mt-3">No country data to display. Add some stays to see your tax residency summary.</p>
+        <p class="mt-3">{{ $t('summary.noData') }}</p>
       </div>
       <div v-else class="table-responsive">
         <table class="table table-hover mb-0">
           <thead>
             <tr>
-              <th>Country</th>
-              <th>Total Days</th>
-              <th>Status</th>
+              <th>{{ $t('summary.country') }}</th>
+              <th>{{ $t('summary.totalDays') }}</th>
+              <th>{{ $t('summary.threshold') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +36,8 @@
                   <i class="bi bi-exclamation-triangle-fill me-1"></i> Tax Resident
                 </span>
                 <span v-else-if="summary.totalDays >= 150" class="badge bg-warning-subtle text-warning">
-                  <i class="bi bi-exclamation-circle me-1"></i> Approaching Limit
+                  <i class="bi bi-exclamation-circle me-1"></i> 
+                  {{ $t('summary.thresholdWarning', { days: summary.totalDays, country: summary.country }) }}
                 </span>
                 <span v-else class="badge bg-success-subtle text-success">
                   <i class="bi bi-check-circle me-1"></i> Safe

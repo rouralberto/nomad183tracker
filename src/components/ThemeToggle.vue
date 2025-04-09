@@ -43,7 +43,7 @@ export default {
     aria-label="Toggle theme"
   >
     <i class="bi" :class="isDarkMode ? 'bi-sun' : 'bi-moon'"></i>
-    <span class="ms-1 d-none d-sm-inline">{{ isDarkMode ? 'Light' : 'Dark' }}</span>
+    <span class="ms-1 d-none d-sm-inline">{{ isDarkMode ? $t('theme.light') : $t('theme.dark') }}</span>
   </button>
 </template>
 

@@ -1,0 +1,65 @@
+export default {
+  appName: 'Nomad183Tracker',
+  appTagline: 'Track your international stays and monitor tax residency thresholds',
+  form: {
+    title: 'Add New Stay',
+    editTitle: 'Edit Stay',
+    country: 'Country',
+    countryPlaceholder: 'Select country',
+    checkIn: 'Check-In Date',
+    checkOut: 'Check-Out Date',
+    days: 'Days',
+    notes: 'Notes (Optional)',
+    notesPlaceholder: 'Any additional details about your stay',
+    add: 'Add Stay',
+    update: 'Update Stay',
+    cancel: 'Cancel'
+  },
+  list: {
+    title: 'Your Stays',
+    noStays: 'No stays recorded yet. Add your first stay using the form above!',
+    country: 'Country',
+    dates: 'Dates',
+    days: 'Days',
+    notes: 'Notes',
+    actions: 'Actions',
+    edit: 'Edit',
+    delete: 'Delete'
+  },
+  summary: {
+    title: 'Country Summary',
+    country: 'Country',
+    totalDays: 'Total Days',
+    noData: 'No data available. Add your stays to see country summaries.',
+    threshold: 'Tax Residency Threshold',
+    thresholdWarning: '{days} days in {country} (threshold: 183 days)'
+  },
+  alerts: {
+    stayAdded: 'New stay added successfully!',
+    stayUpdated: 'Stay updated successfully!',
+    stayDeleted: 'Stay deleted successfully!',
+    dataReset: 'All data has been reset.',
+    loadError: 'Error loading your data. Starting with empty state.',
+    saveError: 'Error saving your data. Changes may not persist.'
+  },
+  actions: {
+    resetData: 'Reset All Data',
+    resetConfirm: 'Are you sure you want to delete ALL your data? This cannot be undone!'
+  },
+  footer: {
+    description: 'Nomad183Tracker - For digital nomads tracking tax residency on the move',
+    privacy: 'Data stored locally in your browser - Your privacy protected',
+    contribute: 'Contribute on GitHub',
+    madeWith: 'Made with',
+    by: 'by'
+  },
+  theme: {
+    dark: 'Dark Mode',
+    light: 'Light Mode'
+  },
+  language: {
+    english: 'English',
+    chinese: '中文',
+    spanish: 'Español'
+  }
+} 

@@ -1,15 +1,15 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h5 class="mb-0">{{ editingStay ? 'Edit Stay' : 'Add New Stay' }}</h5>
+      <h5 class="mb-0">{{ editingStay ? $t('form.editTitle') : $t('form.title') }}</h5>
     </div>
     <div class="card-body p-0">
       <form @submit.prevent="addStay" class="p-3">
         <div class="form-group mb-3">
-          <label for="country" class="form-label">Country</label>
+          <label for="country" class="form-label">{{ $t('form.country') }}</label>
           <div class="input-group">
             <select v-model="stay.country" class="form-select" id="country" required>
-              <option value="" disabled>Select a country</option>
+              <option value="" disabled>{{ $t('form.countryPlaceholder') }}</option>
               <option v-for="country in countries" :key="country" :value="country">{{ country }}</option>
               <option value="other">Other (specify)</option>
             </select>
@@ -27,7 +27,7 @@
         
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="startDate" class="form-label">Start Date</label>
+            <label for="startDate" class="form-label">{{ $t('form.checkIn') }}</label>
             <input
               type="date"
               v-model="stay.startDate"
@@ -38,7 +38,7 @@
             />
           </div>
           <div class="col-md-6 mb-3">
-            <label for="endDate" class="form-label">End Date</label>
+            <label for="endDate" class="form-label">{{ $t('form.checkOut') }}</label>
             <input
               type="date"
               v-model="stay.endDate"
@@ -62,11 +62,11 @@
             class="btn btn-outline-secondary me-2" 
             @click="cancelEdit"
           >
-            <i class="bi bi-x-circle me-1"></i> Cancel
+            <i class="bi bi-x-circle me-1"></i> {{ $t('form.cancel') }}
           </button>
           <button type="submit" class="btn" :class="editingStay ? 'btn-warning' : 'btn-primary'">
             <i class="bi" :class="editingStay ? 'bi-save' : 'bi-plus-circle'"></i>
-            {{ editingStay ? ' Save Changes' : ' Add Stay' }}
+            {{ editingStay ? $t('form.update') : $t('form.add') }}
           </button>
         </div>
       </form>
@@ -94,20 +94,57 @@ export default {
       otherCountry: '',
       formError: '',
       countries: [
-        'USA', 
-        'UK', 
-        'France', 
-        'Germany', 
-        'Spain', 
-        'Italy', 
-        'Japan', 
-        'Australia', 
-        'Canada', 
-        'Mexico',
+        // Popular in Europe
         'Portugal',
+        'Spain',
+        'Italy',
+        'Greece',
+        'Croatia',
+        'Germany',
+        'France',
         'Netherlands',
-        'Switzerland'
-      ]
+        'UK',
+        'Estonia',
+        'Georgia',
+        'Czech Republic',
+        'Hungary',
+        'Montenegro',
+        'Malta',
+        'Cyprus',
+        // Popular in Asia
+        'Thailand',
+        'Indonesia',
+        'Vietnam',
+        'Malaysia',
+        'Singapore',
+        'Japan',
+        'South Korea',
+        'Taiwan',
+        'Philippines',
+        'Cambodia',
+        'Sri Lanka',
+        'India',
+        'Nepal',
+        // Americas
+        'USA',
+        'Mexico',
+        'Colombia',
+        'Costa Rica',
+        'Panama',
+        'Brazil',
+        'Peru',
+        'Argentina',
+        'Ecuador',
+        'Chile',
+        'Canada',
+        // Others
+        'Australia',
+        'New Zealand',
+        'UAE',
+        'South Africa',
+        'Morocco',
+        'Turkey'
+      ].sort()
     }
   },
   computed: {
