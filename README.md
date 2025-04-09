@@ -87,3 +87,20 @@ Nomad183Tracker is designed for freelancers and digital nomads tracking their ta
 - Bootstrap Icons 1.11.3
 - Vite (build tool)
 - localStorage (data persistence)
+
+## Environment Variables
+
+This application uses environment variables for configuration. Copy the `.env.example` file to a new file named `.env` and adjust the values as needed:
+
+```bash
+# Copy example environment variables
+cp .env.example .env
+```
+
+Available environment variables:
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| VITE_GOOGLE_ANALYTICS_ID | Google Analytics measurement ID | G-XXXXXXXXXX |
+
+Note: The `.env` file is excluded from version control to protect sensitive values.
