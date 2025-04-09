@@ -1,0 +1,38 @@
+/* Custom styles for Nomad183Tracker */
+
+body {
+  min-height: 100vh;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.day-tracker {
+  transition: all 0.3s ease;
+}
+
+.day-tracker:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Day count color indicators */
+.days-normal {
+  color: #0d6efd;
+}
+
+.days-warning {
+  color: #ffc107;
+}
+
+.days-danger {
+  color: #dc3545;
+}
+
+/* Animation for alerts */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
