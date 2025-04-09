@@ -15,6 +15,8 @@ The application is freely available at the link above. No installation required 
 - **Rolling 365-day calculation** for accurate tax residency tracking
 - Visual indicators for stays within the last year
 - Responsive UI built with Vue.js and Bootstrap
+- Available in multiple languages: English, Spanish, and Chinese
+- Dark/light theme toggler for comfortable viewing
 - All data stored locally in your browser (localStorage)
 - No server dependencies - works completely offline after initial load
 
