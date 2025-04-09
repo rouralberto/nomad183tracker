@@ -1,5 +1,5 @@
 export default {
-  appName: 'Nomad183Tracker',
+  appName: '183Tracker',
   appTagline: 'Track your international stays and monitor tax residency thresholds',
   form: {
     title: 'Add New Stay',
@@ -57,7 +57,7 @@ export default {
     importConfirm: 'This will replace your existing data. Continue?'
   },
   footer: {
-    description: 'Nomad183Tracker - For digital nomads tracking tax residency on the move',
+    description: '183Tracker - For digital nomads tracking tax residency on the move',
     privacy: 'Data stored locally in your browser - Your privacy protected',
     contribute: 'Contribute on GitHub',
     madeWith: 'Made with',

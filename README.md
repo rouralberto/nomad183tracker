@@ -1,4 +1,4 @@
-# Nomad183Tracker
+# 183Tracker
 
 A client-side web application for tracking stays in different countries and monitoring tax residency limits (the 183-day rule).
 
@@ -47,7 +47,7 @@ This will create a `dist` folder containing the static files ready for deploymen
 
 ### Rolling 365-Day Window
 
-Nomad183Tracker uses a rolling 365-day window calculation by default to accurately track your tax residency status. Many countries count days within the previous 12 months rather than just a calendar year.
+183Tracker uses a rolling 365-day window calculation by default to accurately track your tax residency status. Many countries count days within the previous 12 months rather than just a calendar year.
 
 - Stays in the last 365 days are highlighted in the stays list
 - The summary view shows days counted only within the rolling year window
@@ -73,7 +73,7 @@ aws s3 sync dist/ s3://your-bucket-name/ --acl public-read
 
 ## Design Philosophy
 
-Nomad183Tracker is designed for freelancers and digital nomads tracking their tax residency while traveling. The app is:
+183Tracker is designed for freelancers and digital nomads tracking their tax residency while traveling. The app is:
 
 - Lightweight - Fast loading and minimal resource usage
 - Private - All data stays in your browser

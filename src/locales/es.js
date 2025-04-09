@@ -1,5 +1,5 @@
 export default {
-  appName: 'Nomad183Tracker',
+  appName: '183Tracker',
   appTagline: 'Registra tus estancias internacionales y monitorea los umbrales de residencia fiscal',
   form: {
     title: 'Añadir Nueva Estancia',
@@ -57,7 +57,7 @@ export default {
     importConfirm: 'Esto reemplazará tus datos existentes. ¿Continuar?'
   },
   footer: {
-    description: 'Nomad183Tracker - Para nómadas digitales que rastrean la residencia fiscal en movimiento',
+    description: '183Tracker - Para nómadas digitales que rastrean la residencia fiscal en movimiento',
     privacy: 'Datos almacenados localmente en tu navegador - Tu privacidad protegida',
     contribute: 'Contribuir en GitHub',
     madeWith: 'Hecho con',
