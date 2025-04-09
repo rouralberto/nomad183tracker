@@ -10,9 +10,9 @@ export default {
   data() {
     return {
       languages: [
-        { code: 'en', name: 'English' },
-        { code: 'zh', name: '中文' },
-        { code: 'es', name: 'Español' }
+        { code: 'en', name: 'English', flag: '🇬🇧' },
+        { code: 'zh', name: '中文', flag: '🇨🇳' },
+        { code: 'es', name: 'Español', flag: '🇪🇸' }
       ]
     };
   },
@@ -27,20 +27,20 @@ export default {
 <template>
   <div class="dropdown">
     <button 
-      class="btn btn-outline-secondary dropdown-toggle px-3 py-2" 
+      class="btn btn-outline-secondary dropdown-toggle px-2 language-toggle" 
       type="button" 
-      data-bs-toggle="dropdown" 
+      data-bs-toggle="dropdown"
       aria-expanded="false">
-      <i class="bi bi-translate me-1"></i>
-      {{ languages.find(lang => lang.code === value).name }}
+      {{ languages.find(lang => lang.code === value).flag }}
     </button>
-    <ul class="dropdown-menu dropdown-menu-end">
+    <ul class="dropdown-menu dropdown-menu-end" style="min-width: 40px;">
       <li v-for="lang in languages" :key="lang.code">
         <button 
-          class="dropdown-item" 
+          class="dropdown-item text-center" 
           :class="{ active: lang.code === value }"
-          @click="changeLanguage(lang.code)">
-          {{ lang.name }}
+          @click="changeLanguage(lang.code)"
+          :title="lang.name">
+          {{ lang.flag }}
         </button>
       </li>
     </ul>
@@ -51,5 +51,13 @@ export default {
 .dropdown-item.active,
 .dropdown-item:active {
   background-color: var(--bs-secondary);
+}
+
+.language-toggle {
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style> 

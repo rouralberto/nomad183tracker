@@ -38,12 +38,12 @@ export default {
 <template>
   <button 
     @click="toggleTheme" 
-    class="btn btn-sm rounded-pill shadow-sm theme-toggle text-body" 
+    class="btn rounded-circle shadow-sm theme-toggle text-body" 
     :class="isDarkMode ? 'btn-light-subtle' : 'btn-dark-subtle'"
-    aria-label="Toggle theme"
+    :aria-label="isDarkMode ? $t('theme.light') : $t('theme.dark')"
+    :title="isDarkMode ? $t('theme.light') : $t('theme.dark')"
   >
     <i class="bi" :class="isDarkMode ? 'bi-sun' : 'bi-moon'"></i>
-    <span class="ms-1 d-none d-sm-inline">{{ isDarkMode ? $t('theme.light') : $t('theme.dark') }}</span>
   </button>
 </template>
 
@@ -51,7 +51,12 @@ export default {
 .theme-toggle {
   transition: all 0.3s ease;
   border: none;
-  padding: 0.375rem 0.75rem;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle:hover {

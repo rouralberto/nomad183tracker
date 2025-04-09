@@ -245,12 +245,6 @@ export default {
 <template>
   <div class="container">
     <header class="section text-center position-relative">
-      <div class="position-absolute top-0 end-0 mt-2 d-flex">
-        <div class="me-2">
-          <LanguageSwitcher :value="locale" @change-language="changeLanguage" />
-        </div>
-        <ThemeToggle />
-      </div>
       <h1 class="display-5 mb-3">
         <i class="bi bi-geo-alt"></i> {{ $t('appName') }}
       </h1>
@@ -317,6 +311,12 @@ export default {
         {{ $t('footer.madeWith') }} <i class="bi bi-heart-fill text-danger"></i> {{ $t('footer.by') }} 
         <a href="https://albertoroura.com" target="_blank" class="text-decoration-none">Alberto Roura</a>
       </p>
+      
+      <!-- Language and Theme Controls -->
+      <div class="d-flex justify-content-center mt-3 gap-2">
+        <LanguageSwitcher :value="locale" @change-language="changeLanguage" />
+        <ThemeToggle />
+      </div>
     </footer>
   </div>
 </template>
