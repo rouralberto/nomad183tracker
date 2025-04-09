@@ -38,7 +38,7 @@ export default {
 <template>
   <button 
     @click="toggleTheme" 
-    class="btn btn-sm rounded-pill shadow-sm theme-toggle" 
+    class="btn btn-sm rounded-pill shadow-sm theme-toggle text-body" 
     :class="isDarkMode ? 'btn-light-subtle' : 'btn-dark-subtle'"
     aria-label="Toggle theme"
   >
