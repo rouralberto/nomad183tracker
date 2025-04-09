@@ -2,6 +2,12 @@
 
 A client-side web application for tracking stays in different countries and monitoring tax residency limits (the 183-day rule).
 
+## Public Deployment
+
+**Use it now: [https://183tracker.guztia.com](https://183tracker.guztia.com)**
+
+The application is freely available at the link above. No installation required - just visit the website and start tracking your stays. Self-hosting (instructions below) is completely optional.
+
 ## Features
 
 - Track days spent in different countries
