@@ -1,7 +1,7 @@
 {
   "name": "nomad183tracker",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,13 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.5",
-    "bootstrap-icons": "^1.11.3",
-    "vue": "^3.5.13",
-    "vue-i18n": "^9.14.4"
+    "bootstrap": "5.3.5",
+    "bootstrap-icons": "1.11.3",
+    "vue": "3.5.13",
+    "vue-i18n": "11.1.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.2.0"
+    "@vitejs/plugin-vue": "5.2.1",
+    "vite": "6.2.0"
   }
 }
