@@ -1,11 +1,11 @@
 <template>
-  <div class="card mb-4">
-    <div class="card-header" :class="editingStay ? 'bg-warning text-dark' : 'bg-primary text-white'">
+  <div class="card">
+    <div class="card-header">
       <h5 class="mb-0">{{ editingStay ? 'Edit Stay' : 'Add New Stay' }}</h5>
     </div>
-    <div class="card-body">
-      <form @submit.prevent="addStay">
-        <div class="mb-3">
+    <div class="card-body p-0">
+      <form @submit.prevent="addStay" class="p-3">
+        <div class="form-group mb-3">
           <label for="country" class="form-label">Country</label>
           <div class="input-group">
             <select v-model="stay.country" class="form-select" id="country" required>
@@ -51,15 +51,15 @@
           </div>
         </div>
         
-        <div v-if="formError" class="alert alert-danger mt-3">
+        <div v-if="formError" class="alert alert-danger-subtle text-danger mt-3">
           {{ formError }}
         </div>
         
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
           <button 
             v-if="editingStay" 
             type="button" 
-            class="btn btn-secondary me-2" 
+            class="btn btn-outline-secondary me-2" 
             @click="cancelEdit"
           >
             <i class="bi bi-x-circle me-1"></i> Cancel

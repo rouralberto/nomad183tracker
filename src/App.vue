@@ -119,53 +119,59 @@ export default {
 
 <template>
   <div class="container">
-    <header class="mb-4 text-center position-relative">
+    <header class="section text-center position-relative">
       <div class="position-absolute top-0 end-0 mt-2">
         <ThemeToggle />
       </div>
-      <h1 class="display-5 my-4">
+      <h1 class="display-5 mb-3">
         <i class="bi bi-geo-alt"></i> Nomad183Tracker
       </h1>
-      <p class="lead">Track your international stays and monitor tax residency thresholds</p>
+      <p class="lead mb-0">Track your international stays and monitor tax residency thresholds</p>
     </header>
     
     <!-- Alert for notifications -->
-    <div v-if="showAlert" class="alert alert-dismissible fade show" :class="`alert-${alertType}`" role="alert">
+    <div v-if="showAlert" class="alert alert-dismissible fade show" :class="`alert-${alertType}-subtle`" role="alert">
       {{ alertMessage }}
       <button @click="showAlert = false" type="button" class="btn-close" aria-label="Close"></button>
     </div>
     
     <!-- Stay Form -->
-    <StayForm 
-      @add-stay="addStay" 
-      @cancel-edit="cancelEdit"
-      :key="editingStay ? editingStay.id : 'new'" 
-      :editing-stay="editingStay" 
-    />
+    <div class="section">
+        <StayForm 
+          @add-stay="addStay" 
+          @cancel-edit="cancelEdit"
+          :key="editingStay ? editingStay.id : 'new'" 
+          :editing-stay="editingStay" 
+        />
+      </div>
     
     <!-- Country Summary -->
-    <CountrySummary 
-      :country-summary="countrySummary" 
-      :stays="stays"
-    />
+    <div class="section">
+      <CountrySummary 
+        :country-summary="countrySummary" 
+        :stays="stays"
+      />
+    </div>
     
     <!-- Stays List -->
-    <StayList 
-      :stays="stays" 
-      @edit-stay="editStay" 
-      @delete-stay="deleteStay" 
-    />
+    <div class="section">
+      <StayList 
+        :stays="stays" 
+        @edit-stay="editStay" 
+        @delete-stay="deleteStay" 
+      />
+    </div>
     
     <!-- Reset Button -->
-    <div class="text-center mb-5">
+    <div class="section text-center">
       <button @click="resetAllData" class="btn btn-outline-danger">
         <i class="bi bi-trash me-1"></i> Reset All Data
       </button>
     </div>
     
-    <footer class="text-center text-muted small mb-3">
-      <p>Nomad183Tracker - For freelancers tracking tax residency on the move</p>
-      <p>Data stored locally in your browser - Your privacy protected</p>
+    <footer class="section text-center text-muted small mb-0">
+      <p class="mb-1">Nomad183Tracker - For freelancers tracking tax residency on the move</p>
+      <p class="mb-0">Data stored locally in your browser - Your privacy protected</p>
     </footer>
   </div>
 </template>

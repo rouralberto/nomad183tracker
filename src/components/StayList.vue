@@ -1,8 +1,8 @@
 <template>
-  <div class="card mb-4">
-    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">Your Stays</h5>
-      <span class="badge bg-light text-dark">{{ stays.length }} entries</span>
+      <span class="badge bg-success-subtle text-body">{{ stays.length }} entries</span>
     </div>
     <div class="card-body p-0">
       <div v-if="stays.length === 0" class="p-4 text-center text-muted">
@@ -25,7 +25,7 @@
                 :class="{'recent-stay': isWithinRollingYear(stay)}">
               <td>
                 {{ stay.country }}
-                <span v-if="isWithinRollingYear(stay)" class="badge rounded-pill bg-info ms-1" title="Within rolling 365 days">
+                <span v-if="isWithinRollingYear(stay)" class="badge rounded-pill bg-info-subtle text-body ms-1" title="Within rolling 365 days">
                   <i class="bi bi-calendar-check"></i>
                 </span>
               </td>
@@ -86,6 +86,7 @@ export default {
 
 <style scoped>
 .recent-stay {
-  background-color: rgba(13, 202, 240, 0.05);
+  background-color: var(--bg-subtle);
+  border-left: 3px solid var(--bs-info);
 }
 </style> 

@@ -39,7 +39,7 @@ export default {
   <button 
     @click="toggleTheme" 
     class="btn btn-sm rounded-pill shadow-sm theme-toggle" 
-    :class="isDarkMode ? 'btn-light text-dark' : 'btn-dark text-light'"
+    :class="isDarkMode ? 'btn-light-subtle' : 'btn-dark-subtle'"
     aria-label="Toggle theme"
   >
     <i class="bi" :class="isDarkMode ? 'bi-sun' : 'bi-moon'"></i>
@@ -51,9 +51,21 @@ export default {
 .theme-toggle {
   transition: all 0.3s ease;
   border: none;
+  padding: 0.375rem 0.75rem;
 }
 
 .theme-toggle:hover {
   transform: translateY(-1px);
+  box-shadow: 0 0.125rem 0.25rem var(--shadow-color);
+}
+
+.btn-light-subtle {
+  background-color: var(--bs-light-bg-subtle);
+  color: var(--bs-dark);
+}
+
+.btn-dark-subtle {
+  background-color: var(--bs-dark-bg-subtle);
+  color: var(--bs-light);
 }
 </style> 

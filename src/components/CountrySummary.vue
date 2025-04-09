@@ -1,10 +1,10 @@
 <template>
-  <div class="card mb-4">
-    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
       <h5 class="mb-0">Tax Residency Summary</h5>
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" v-model="showRollingYear" id="rollingYearSwitch">
-        <label class="form-check-label text-white" for="rollingYearSwitch">
+        <label class="ms-2 form-check-label" for="rollingYearSwitch">
           Rolling 365 days
         </label>
       </div>
@@ -32,13 +32,13 @@
                 </span>
               </td>
               <td>
-                <span v-if="summary.totalDays >= 183" class="badge bg-danger">
+                <span v-if="summary.totalDays >= 183" class="badge bg-danger-subtle text-danger">
                   <i class="bi bi-exclamation-triangle-fill me-1"></i> Tax Resident
                 </span>
-                <span v-else-if="summary.totalDays >= 150" class="badge bg-warning text-dark">
+                <span v-else-if="summary.totalDays >= 150" class="badge bg-warning-subtle text-warning">
                   <i class="bi bi-exclamation-circle me-1"></i> Approaching Limit
                 </span>
-                <span v-else class="badge bg-success">
+                <span v-else class="badge bg-success-subtle text-success">
                   <i class="bi bi-check-circle me-1"></i> Safe
                 </span>
               </td>
@@ -52,7 +52,7 @@
         <i class="bi bi-info-circle me-1"></i> 
         {{ showRollingYear ? 'Showing days in the last 365 days only' : 'Showing all-time totals' }}
       </div>
-      <span class="badge" :class="showRollingYear ? 'bg-info text-white' : 'bg-secondary'">
+      <span class="badge text-body" :class="showRollingYear ? 'bg-info-subtle' : 'bg-secondary-subtle'">
         {{ showRollingYear ? 'Rolling Year' : 'All Time' }}
       </span>
     </div>
