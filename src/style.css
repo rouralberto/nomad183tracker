@@ -1,13 +1,31 @@
 /* Custom styles for Nomad183Tracker */
 
+:root {
+  --transition-speed: 0.3s;
+}
+
 body {
   min-height: 100vh;
   padding-top: 1rem;
   padding-bottom: 2rem;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Add smooth transitions for theme switching */
+.card,
+.alert,
+.btn,
+.form-control,
+.form-select,
+.nav-link,
+.navbar {
+  transition: background-color var(--transition-speed), 
+              color var(--transition-speed), 
+              border-color var(--transition-speed);
 }
 
 .day-tracker {
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .day-tracker:hover {
@@ -30,7 +48,7 @@ body {
 
 /* Animation for alerts */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity var(--transition-speed);
 }
 
 .fade-enter-from, .fade-leave-to {

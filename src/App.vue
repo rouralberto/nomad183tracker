@@ -2,13 +2,15 @@
 import StayForm from './components/StayForm.vue';
 import StayList from './components/StayList.vue';
 import CountrySummary from './components/CountrySummary.vue';
+import ThemeToggle from './components/ThemeToggle.vue';
 
 export default {
   name: 'App',
   components: {
     StayForm,
     StayList,
-    CountrySummary
+    CountrySummary,
+    ThemeToggle
   },
   data() {
     return {
@@ -117,7 +119,10 @@ export default {
 
 <template>
   <div class="container">
-    <header class="mb-4 text-center">
+    <header class="mb-4 text-center position-relative">
+      <div class="position-absolute top-0 end-0 mt-2">
+        <ThemeToggle />
+      </div>
       <h1 class="display-5 my-4">
         <i class="bi bi-geo-alt"></i> Nomad183Tracker
       </h1>
