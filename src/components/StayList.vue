@@ -21,7 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="stay in stays" :key="stay.id" class="day-tracker"
+            <tr v-for="stay in sortedStays" :key="stay.id" class="day-tracker"
                 :class="{'recent-stay': isWithinRollingYear(stay), 'present-stay': isPresentStay(stay)}">
               <td>
                 {{ stay.country }}
@@ -74,6 +74,11 @@ export default {
     stays: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    sortedStays() {
+      return [...this.stays].sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
     }
   },
   methods: {
