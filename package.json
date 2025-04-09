@@ -1,8 +1,24 @@
 {
   "name": "nomad183tracker",
-  "private": true,
   "version": "1.0.0",
+  "description": "Application to track progress for the 183-day tax residency threshold",
   "type": "module",
+  "private": true,
+  "author": "Alberto Roura",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rouralberto/nomad183tracker"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "nomad",
+    "tracker",
+    "vue",
+    "bootstrap"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
