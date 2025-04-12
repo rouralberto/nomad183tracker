@@ -244,80 +244,84 @@ export default {
 
 <template>
   <div class="container">
-    <header class="section text-center position-relative">
-      <h1 class="display-5 mb-3">
-        <i class="bi bi-geo-alt"></i> {{ $t('appName') }}
-      </h1>
-      <p class="lead mb-0">{{ $t('appTagline') }}</p>
-    </header>
-    
-    <!-- Alert for notifications -->
-    <div v-if="showAlert" class="alert alert-dismissible fade show" :class="`alert-${alertType}-subtle`" role="alert">
-      {{ alertMessage }}
-      <button @click="showAlert = false" type="button" class="btn-close" aria-label="Close"></button>
-    </div>
-    
-    <!-- Stay Form -->
-    <div class="section">
-        <StayForm 
-          @add-stay="addStay" 
-          @cancel-edit="cancelEdit"
-          :key="editingStay ? editingStay.id : 'new'" 
-          :editing-stay="editingStay" 
-        />
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+        <header class="my-5 text-center position-relative">
+          <h1 class="display-5 mb-3">
+            <i class="bi bi-geo-alt text-success"></i> {{ $t('appName') }}
+          </h1>
+          <p class="lead mb-0">{{ $t('appTagline') }}</p>
+        </header>
+        
+        <!-- Alert for notifications -->
+        <div v-if="showAlert" class="alert alert-dismissible fade show" :class="`alert-${alertType}-subtle`" role="alert">
+          {{ alertMessage }}
+          <button @click="showAlert = false" type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        
+        <!-- Stay Form -->
+        <div class="mb-4">
+            <StayForm 
+              @add-stay="addStay" 
+              @cancel-edit="cancelEdit"
+              :key="editingStay ? editingStay.id : 'new'" 
+              :editing-stay="editingStay" 
+            />
+          </div>
+        
+        <!-- Country Summary -->
+        <div class="mb-4">
+          <CountrySummary 
+            :country-summary="countrySummary" 
+            :stays="stays"
+          />
+        </div>
+        
+        <!-- Stays List -->
+        <div class="mb-4">
+          <StayList 
+            :stays="stays" 
+            @edit-stay="editStay" 
+            @delete-stay="deleteStay" 
+          />
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="mb-4 text-center">
+          <div class="btn-group">
+            <button @click="exportData" class="btn btn-outline-primary">
+              <i class="bi bi-download me-1"></i> {{ $t('actions.exportData') }}
+            </button>
+            <button @click="triggerImport" class="btn btn-outline-success">
+              <i class="bi bi-upload me-1"></i> {{ $t('actions.importData') }}
+            </button>
+            <button @click="resetAllData" class="btn btn-outline-danger">
+              <i class="bi bi-trash me-1"></i> {{ $t('actions.resetData') }}
+            </button>
+          </div>
+        </div>
+        
+        <footer class="section text-center text-muted small mb-4">
+          <p class="mb-1">{{ $t('footer.description') }}</p>
+          <p class="mb-0">{{ $t('footer.privacy') }}</p>
+          <p class="mb-0 mt-2">
+            <a href="https://github.com/rouralberto/nomad183tracker" target="_blank" class="text-decoration-none">
+              <i class="bi bi-github me-1"></i>{{ $t('footer.contribute') }}
+            </a>
+          </p>
+          <p class="mb-0 mt-2">
+            {{ $t('footer.madeWith') }} <i class="bi bi-heart-fill text-danger"></i> {{ $t('footer.by') }} 
+            <a href="https://albertoroura.com" target="_blank" class="text-decoration-none">Alberto Roura</a>
+          </p>
+          
+          <!-- Language and Theme Controls -->
+          <div class="d-flex justify-content-center mt-3 gap-2">
+            <LanguageSwitcher :value="locale" @change-language="changeLanguage" />
+            <ThemeToggle />
+          </div>
+        </footer>
       </div>
-    
-    <!-- Country Summary -->
-    <div class="section">
-      <CountrySummary 
-        :country-summary="countrySummary" 
-        :stays="stays"
-      />
     </div>
-    
-    <!-- Stays List -->
-    <div class="section">
-      <StayList 
-        :stays="stays" 
-        @edit-stay="editStay" 
-        @delete-stay="deleteStay" 
-      />
-    </div>
-    
-    <!-- Action Buttons -->
-    <div class="section text-center">
-      <div class="btn-group">
-        <button @click="exportData" class="btn btn-outline-primary">
-          <i class="bi bi-download me-1"></i> {{ $t('actions.exportData') }}
-        </button>
-        <button @click="triggerImport" class="btn btn-outline-success">
-          <i class="bi bi-upload me-1"></i> {{ $t('actions.importData') }}
-        </button>
-        <button @click="resetAllData" class="btn btn-outline-danger">
-          <i class="bi bi-trash me-1"></i> {{ $t('actions.resetData') }}
-        </button>
-      </div>
-    </div>
-    
-    <footer class="section text-center text-muted small mb-0">
-      <p class="mb-1">{{ $t('footer.description') }}</p>
-      <p class="mb-0">{{ $t('footer.privacy') }}</p>
-      <p class="mb-0 mt-2">
-        <a href="https://github.com/rouralberto/nomad183tracker" target="_blank" class="text-decoration-none">
-          <i class="bi bi-github me-1"></i>{{ $t('footer.contribute') }}
-        </a>
-      </p>
-      <p class="mb-0 mt-2">
-        {{ $t('footer.madeWith') }} <i class="bi bi-heart-fill text-danger"></i> {{ $t('footer.by') }} 
-        <a href="https://albertoroura.com" target="_blank" class="text-decoration-none">Alberto Roura</a>
-      </p>
-      
-      <!-- Language and Theme Controls -->
-      <div class="d-flex justify-content-center mt-3 gap-2">
-        <LanguageSwitcher :value="locale" @change-language="changeLanguage" />
-        <ThemeToggle />
-      </div>
-    </footer>
   </div>
 </template>
 

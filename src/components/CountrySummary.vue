@@ -24,8 +24,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="summary in currentSummary" :key="summary.country">
-              <td>{{ summary.country }}</td>
+            <tr v-for="summary in currentSummary" :key="summary.country" 
+                :class="{'current-location': isCurrentLocation(summary.country)}">
+              <td>
+                {{ summary.country }}
+                <span v-if="isCurrentLocation(summary.country)" class="badge rounded-pill bg-success text-white ms-1" title="Currently in this country">
+                  <i class="bi bi-geo-fill"></i> {{ $t('list.present') }}
+                </span>
+              </td>
               <td>
                 <span :class="getDayClass(summary.totalDays)">
                   {{ summary.totalDays }}
@@ -122,6 +128,11 @@ export default {
       
       // Convert to array and sort by total days descending
       return Object.values(summary).sort((a, b) => b.totalDays - a.totalDays);
+    },
+    currentLocation() {
+      // Find the country where the user is currently at
+      const presentStay = this.stays.find(stay => stay.isPresent === true);
+      return presentStay ? presentStay.country : null;
     }
   },
   methods: {
@@ -133,6 +144,9 @@ export default {
       } else {
         return 'days-normal';
       }
+    },
+    isCurrentLocation(country) {
+      return country === this.currentLocation;
     }
   }
 }
@@ -145,5 +159,9 @@ export default {
 }
 .form-check-label {
   cursor: pointer;
+}
+.current-location {
+  background-color: rgba(25, 135, 84, 0.05);
+  border-left: 3px solid var(--bs-success);
 }
 </style> 

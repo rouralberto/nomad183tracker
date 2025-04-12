@@ -5,7 +5,7 @@
     </div>
     <div class="card-body p-0">
       <form @submit.prevent="addStay" class="p-3">
-        <div class="form-group mb-3">
+        <div class="mb-3">
           <label for="country" class="form-label">{{ $t('form.country') }}</label>
           <div class="input-group">
             <select v-model="stay.country" class="form-select" id="country" required>

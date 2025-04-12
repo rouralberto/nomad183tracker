@@ -21,8 +21,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="stay in sortedStays" :key="stay.id" class="day-tracker"
-                :class="{'recent-stay': isWithinRollingYear(stay), 'present-stay': isPresentStay(stay)}">
+            <tr v-for="stay in sortedStays" :key="stay.id" 
+                class="border-start" 
+                :class="{
+                  'bg-light border-info border-start-3': isWithinRollingYear(stay) && !isPresentStay(stay),
+                  'bg-success-subtle border-success border-start-3': isPresentStay(stay)
+                }">
               <td>
                 {{ stay.country }}
                 <span v-if="isWithinRollingYear(stay)" class="badge rounded-pill bg-info-subtle text-body ms-1" title="Within rolling 365 days">
@@ -51,7 +55,7 @@
               </td>
               <td>
                 <div class="btn-group btn-group-sm">
-                  <button @click="editStay(stay)" class="btn btn-outline-primary" :title="$t('list.edit')">
+                  <button @click="editStay(stay)" class="btn btn-outline-primary me-1" :title="$t('list.edit')">
                     <i class="bi bi-pencil"></i>
                   </button>
                   <button @click="confirmDelete(stay.id)" class="btn btn-outline-danger" :title="$t('list.delete')">
@@ -130,13 +134,8 @@ export default {
 </script>
 
 <style scoped>
-.recent-stay {
-  background-color: var(--bg-subtle);
-  border-left: 3px solid var(--bs-info);
-}
-
-.present-stay {
-  background-color: rgba(25, 135, 84, 0.05);
-  border-left: 3px solid var(--bs-success);
+/* Bootstrap doesn't provide border-start-3 utility so we just need this one custom style */
+.border-start-3 {
+  border-left-width: 3px !important;
 }
 </style> 
